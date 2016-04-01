@@ -10,6 +10,8 @@
 #ifndef _SYS_SYSCALLARGS_H_
 #define	_SYS_SYSCALLARGS_H_
 
+struct lwp;
+
 #ifndef RUMP_CLIENT
 #include <sys/mount.h>
 #include <sys/sched.h>

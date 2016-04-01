@@ -703,7 +703,6 @@ bake_iso ()
 	[ -z "${DUMPCMD}" ] || die -D not supported by iso.  Use -T.
 
 	type xorriso >/dev/null || die bake_iso needs xorriso
-	type grub-mkrescue >/dev/null || die bake_iso needs grub-mkrescue
 
 	store_blkspec=json_store_iso_blkspec
 	store_netspec=json_store_netspec
@@ -777,7 +776,7 @@ bake_iso ()
 	    $(basename $1) >> "${ISODIR}/boot/grub/grub.cfg"
 	cp ${bootimage} "${ISODIR}/boot"
 	cp "${TMPDIR}/json.cfg" "${ISODIR}"
-	grub-mkrescue -o ${opt_name} "${ISODIR}"
+        xorriso -as mkisofs -graft-points -b boot/grub/i386-pc/eltorito.img -no-emul-boot -boot-load-size 4 -boot-info-table --grub2-boot-info --grub2-mbr /usr/local/rump/grub/boot_hybrid.img --protective-msdos-label -o ${opt_name} -r --sort-weight 0 / --sort-weight 1 /boot /usr/local/rump/grub/isoroot "${ISODIR}"
 }
 
 make_ec2 ()
