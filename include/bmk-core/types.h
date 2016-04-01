@@ -30,4 +30,4 @@
 typedef int64_t bmk_time_t;
 #undef __UNCONST
 
-endif /* _BMK_CORE_TYPES_H_ */
+#endif /* _BMK_CORE_TYPES_H_ */
